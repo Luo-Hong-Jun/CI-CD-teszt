@@ -5,6 +5,13 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  
+  # 'kezzel' inditasat lehetőve teszi
+  workflow_dispatch: 
+
+  #időzített indítás
+  #schedule:
+  #  - cron: '04 10 * * *'
 
 jobs:
 
@@ -13,6 +20,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: generate image tag
+    - run: |
+        echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
+
+
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: |
+        docker build . --file Dockerfile --tag my-image-name:$IMAGE_TAG
+        docker login ghcr.io -u Luo-Hong-Jun -p ${{ secrets.GHCR_TOKEN }}
+        docker push ghcr.io/luohongjun/cicd-teszt:$IMAGE_TAG
