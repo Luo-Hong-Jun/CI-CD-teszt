@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
   
   # 'kezzel' inditasat lehetőve teszi
-  # workflow_dispatch: 
+  workflow_dispatch: 
 
   #időzített indítás
   #schedule:
