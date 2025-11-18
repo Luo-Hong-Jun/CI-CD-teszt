@@ -28,6 +28,6 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag my-image-name:$IMAGE_TAG
+        docker build . --file Dockerfile --tag ghcr.io/luohongjun/cicd-teszt:$IMAGE_TAG
         docker login ghcr.io -u Luo-Hong-Jun -p ${{ secrets.GHCR_TOKEN }}
         docker push ghcr.io/luohongjun/cicd-teszt:$IMAGE_TAG
