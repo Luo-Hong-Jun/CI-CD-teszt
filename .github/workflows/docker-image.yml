@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
   
   # 'kezzel' inditasat lehetőve teszi
-  workflow_dispatch: 
+  # workflow_dispatch: 
 
   #időzített indítás
   #schedule:
@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - name: generate image tag
-    - run: |
+      run: |
         echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
 
 
